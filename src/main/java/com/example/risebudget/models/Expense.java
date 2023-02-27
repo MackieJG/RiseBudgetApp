@@ -3,6 +3,7 @@ package com.example.risebudget.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "expenses")
@@ -32,12 +33,16 @@ public class Expense {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    Date timestamp;
+
     public Expense(String title, double amount, Provider provider, CategoryType category, User user) {
         this.title = title;
         this.amount = amount;
         this.provider = provider;
         this.category = category;
         this.user = user;
+        this.timestamp = new Date();
     }
 
     public Expense(){}
@@ -84,5 +89,13 @@ public class Expense {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }
