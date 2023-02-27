@@ -41,6 +41,7 @@ public class Expense {
     }
 
     public Expense(){}
+
     public Long getId() {
         return id;
     }
@@ -80,6 +81,7 @@ public class Expense {
     public User getUser() {
         return user;
     }
+
     public void setUser(User user) {
         this.user = user;
     }
