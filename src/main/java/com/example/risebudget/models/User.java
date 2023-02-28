@@ -19,11 +19,10 @@ public class User {
     @Column(name = "budget")
     private double budget;
 
-    @JsonIgnoreProperties({ "users" })
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Expense> expenses;
 
-    @JsonIgnoreProperties({ "users" })
+    @JsonIgnoreProperties({ "user" })
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Pot> pots;
 
