@@ -10,6 +10,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -44,7 +46,9 @@ public class DataLoader implements ApplicationRunner {
         providerRepo.save(sse);
 
         Expense expense1 = new Expense("Food Shopping", 60.25, tesco, CategoryType.GROCERIES, user);
+//        expense1.setTimestamp(new Date());
         expenseRepo.save(expense1);
+
         Expense expense2 = new Expense("Netflix", 14.99, netflix, CategoryType.SUBSCRIPTIONS, user);
         expenseRepo.save(expense2);
         Expense expense3 = new Expense("Food Shopping", 30.50, tesco, CategoryType.GROCERIES, user);
