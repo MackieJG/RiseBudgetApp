@@ -67,16 +67,16 @@ public class Expense {
         this.amount = amount;
     }
 
-    public CategoryType getCategory() {
-        return category;
-    }
-
     public Provider getProvider() {
         return provider;
     }
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    public CategoryType getCategory() {
+        return category;
     }
 
     public void setCategory(CategoryType category) {
@@ -95,7 +95,7 @@ public class Expense {
         return date;
     }
 
-    public void setTimestamp(Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

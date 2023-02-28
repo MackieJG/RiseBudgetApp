@@ -35,6 +35,10 @@ public class User {
 
     public User(){}
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -65,10 +69,6 @@ public class User {
 
     public void setPots(List<Pot> pots) {
         this.pots = pots;
-    }
-
-    public Long getId() {
-        return id;
     }
 
 }

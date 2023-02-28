@@ -1,7 +1,8 @@
 package com.example.risebudget.controllers;
 
+import com.example.risebudget.models.CategoryType;
 import com.example.risebudget.models.Expense;
-import com.example.risebudget.models.User;
+import com.example.risebudget.models.Provider;
 import com.example.risebudget.repositories.ExpenseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,15 @@ public class ExpenseController {
     ExpenseRepo expenseRepo;
 
     @GetMapping(value = "/expenses")
-    public ResponseEntity<List<Expense>> getAllExpenses() {
+    public ResponseEntity<List<Expense>> getAllExpenses(
+            @RequestParam Optional<CategoryType> category,
+            @RequestParam Optional<String> providerName) {
+        if(category.isPresent()) {
+            return new ResponseEntity<>(expenseRepo.findByCategory(category.get()), HttpStatus.OK);
+        }
+        if(providerName.isPresent()) {
+            return new ResponseEntity<>(expenseRepo.findByProviderName(providerName.get()), HttpStatus.OK);
+        }
         return new ResponseEntity<>(expenseRepo.findAll(), HttpStatus.OK);
     }
 
