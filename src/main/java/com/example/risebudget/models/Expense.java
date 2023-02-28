@@ -33,8 +33,8 @@ public class Expense {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    Date timestamp;
+    @Temporal(TemporalType.DATE)
+    Date date;
 
     public Expense(String title, double amount, Provider provider, CategoryType category, User user) {
         this.title = title;
@@ -42,7 +42,7 @@ public class Expense {
         this.provider = provider;
         this.category = category;
         this.user = user;
-        this.timestamp = new Date();
+        this.date = new Date();
     }
 
     public Expense(){}
@@ -91,11 +91,11 @@ public class Expense {
         this.user = user;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp(Date date) {
+        this.date = date;
     }
 }
