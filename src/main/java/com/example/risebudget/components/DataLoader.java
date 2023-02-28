@@ -8,11 +8,12 @@ import com.example.risebudget.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-
-@Component
+//@Profile("!test")
+//@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ExpenseRepo extends JpaRepository<Expense, Long> {
 
-    List<Expense> findByCategory(CategoryType categoryType);
+    List<Expense> findByCategory(CategoryType category);
 
     List<Expense> findByProviderName(String name);
 

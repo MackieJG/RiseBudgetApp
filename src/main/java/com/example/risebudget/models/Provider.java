@@ -38,7 +38,6 @@ public class Provider {
         this.name = name;
     }
 
-
     public List<Expense> getExpenses() {
         return expenses;
     }
