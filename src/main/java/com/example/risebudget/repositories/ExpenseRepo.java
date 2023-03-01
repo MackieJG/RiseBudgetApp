@@ -22,6 +22,22 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long> {
 
     List<Expense> findByDate(Date date);
 
+    List<Expense> findByProviderNameIn(List<String> providers);
+
+    List<Expense> findByCategoryIn(List<CategoryType> categories);
+    // can't get this to work the enums are bursting my chops
+
+    List<Expense> findByDateBetween(Date startDate, Date endDate);
+
+    List<Expense> findByProviderNameAndDateBetween(String name, Date startDate, Date endDate);
+
+    List<Expense> findByCategoryInAndDateBetween(List<CategoryType> categories, Date startDate, Date endDate);
+
+    List<Expense> findByCategoryInOrProviderNameIn(List<CategoryType> categories, List<String> providers);
+
+    List<Expense> findByCategoryInOrProviderNameInAndDateBetween(List<CategoryType> categories, List<String> providers, Date startDate, Date endDate);
+
+
 }
 
 

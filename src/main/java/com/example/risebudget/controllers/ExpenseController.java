@@ -77,20 +77,40 @@ public class ExpenseController {
         List<Expense> allExpenses = expenseRepo.findAll();
 
         ArrayList<String> categories = new ArrayList<>();
-        JsonNode selections = payload.get("selections");
-        if (selections.isArray()) {
-            for (JsonNode selection : selections) {
+        JsonNode categorySelections = payload.get("categorySelections");
+        if (categorySelections.isArray()) {
+            for (JsonNode selection : categorySelections) {
                 categories.add(selection.asText());
             }
         }
+
+        System.out.println(categories);
+
+        ArrayList<String> providers = new ArrayList<>();
+        JsonNode providerSelections = payload.get("providerSelections");
+        if (providerSelections.isArray()) {
+            for (JsonNode selection : providerSelections) {
+                providers.add(selection.asText());
+            }
+        }
+
+        System.out.println(providers);
 
         List<Expense> filteredExpenses = allExpenses.stream()
                 .filter(expense -> categories.contains(expense.getCategory().toString()))
                 .collect(Collectors.toList());
 
-        System.out.println(filteredExpenses.get(0).getTitle());
+        System.out.println(filteredExpenses);
+        System.out.println(filteredExpenses.size());
 
-        return ResponseEntity.ok(filteredExpenses);
+        List<Expense> filteredExpenses2 = filteredExpenses.stream()
+                .filter(expense -> providers.contains(expense.getProvider().toString()))
+                .collect(Collectors.toList());
+
+        System.out.println(filteredExpenses2);
+        System.out.println(filteredExpenses2.size());
+
+        return ResponseEntity.ok(filteredExpenses2);
     }
 
 
