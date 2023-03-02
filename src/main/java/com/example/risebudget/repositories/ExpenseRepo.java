@@ -35,6 +35,8 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long> {
 
     List<Expense> findByCategoryInOrProviderNameIn(List<CategoryType> categories, List<String> providers);
 
+    List<Expense> findByCategoryInAndProviderNameIn(List<CategoryType> categories, List<String> providers);
+
     List<Expense> findByCategoryInOrProviderNameInAndDateBetween(List<CategoryType> categories, List<String> providers, Date startDate, Date endDate);
 
 

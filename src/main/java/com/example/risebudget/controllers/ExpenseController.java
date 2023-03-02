@@ -35,31 +35,59 @@ public class ExpenseController {
         return new ResponseEntity<>(expenseRepo.findAll(), HttpStatus.OK);
     }
 
+//    @GetMapping(value = "/filteredexpenses")
+//    public ResponseEntity<List<Expense>> getAllExpenses(
+//            @RequestParam(required = false) List<CategoryType> categories,
+//            @RequestParam(required = false) List<String> providers,
+//            @RequestParam(required = false) String startDateStr,
+//            @RequestParam(required = false) String endDateStr
+//    ) {
+//        List<Expense> expenses = new ArrayList<>();
+//
+//        if (startDateStr != null && endDateStr != null) {
+//            try {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                Date startDate = sdf.parse(startDateStr);
+//                Date endDate = sdf.parse(endDateStr);
+//                expenses.addAll(expenseRepo.findByDateBetween(startDate, endDate));
+//            } catch (ParseException e) {
+//                // handle exception
+//            }
+//        }
+//
+//        if (categories != null && !categories.isEmpty()) {
+//            if (providers != null && !providers.isEmpty()) {
+//                expenses.addAll(expenseRepo.findByCategoryInAndProviderNameIn(categories, providers));
+//            } else {
+//                expenses.addAll(expenseRepo.findByCategoryIn(categories));
+//            }
+//        } else if (providers != null && !providers.isEmpty()) {
+//            expenses.addAll(expenseRepo.findByProviderNameIn(providers));
+//        }
+//
+//        return new ResponseEntity<>(expenses, HttpStatus.OK);
+//    }
+
+
     @GetMapping(value = "/filteredexpenses")
     public ResponseEntity<List<Expense>> getAllExpenses(
             @RequestParam(required = false) List<CategoryType> categories,
             @RequestParam(required = false) List<String> providers,
-            @RequestParam(required = false) String startDateStr,
-            @RequestParam(required = false) String endDateStr
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false) String endDate
     ) {
-        List<Expense> expenses = new ArrayList<>();
+        Set<Expense> expensesSet = new HashSet<>();
         if(categories != null && !categories.isEmpty()) {
-            expenses.addAll(expenseRepo.findByCategoryIn(categories));
+            System.out.println(categories);
+            expensesSet.addAll(expenseRepo.findByCategoryIn(categories));
         }
         if(providers != null && !providers.isEmpty()){
-            expenses.addAll(expenseRepo.findByProviderNameIn(providers));
+            System.out.println(providers);
+            expensesSet.addAll(expenseRepo.findByProviderNameIn(providers));
         }
-        if(startDateStr != null && endDateStr != null){
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date startDate = sdf.parse(startDateStr);
-                Date endDate = sdf.parse(endDateStr);
-                expenses.addAll(expenseRepo.findByDateBetween(startDate, endDate));
-            } catch (ParseException e) {
-                // handle exception
-            }
-        }
-        return new ResponseEntity<>(expenses, HttpStatus.OK);
+
+
+        return new ResponseEntity<>(new ArrayList<>(expensesSet), HttpStatus.OK);
     }
 
     @GetMapping(value = "/expenses/{id}")
