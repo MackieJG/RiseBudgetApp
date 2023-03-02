@@ -2,12 +2,13 @@ package com.example.risebudget.repositories;
 
 import com.example.risebudget.models.CategoryType;
 import com.example.risebudget.models.Expense;
+import com.example.risebudget.models.Provider;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ExpenseRepo extends JpaRepository<Expense, Long> {
@@ -25,7 +26,6 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long> {
     List<Expense> findByProviderNameIn(List<String> providers);
 
     List<Expense> findByCategoryIn(List<CategoryType> categories);
-    // can't get this to work the enums are bursting my chops
 
     List<Expense> findByDateBetween(Date startDate, Date endDate);
 
