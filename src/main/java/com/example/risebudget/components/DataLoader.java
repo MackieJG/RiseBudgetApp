@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-//@Profile("!test")
+@Profile("!test")
 //@Component
 public class DataLoader implements ApplicationRunner {
 
@@ -32,32 +32,49 @@ public class DataLoader implements ApplicationRunner {
         User user = new User("James", 1000);
         userRepo.save(user);
 
-        Pot pot1 = new Pot("Holiday Trip", 600.00, user);
-        potRepo.save(pot1);
-        Pot pot2 = new Pot("Rainy Day", 5000.00, user);
-        potRepo.save(pot2);
+//        Pot pot1 = new Pot("Holiday Trip", 600.00, user);
+//        potRepo.save(pot1);
+//        Pot pot2 = new Pot("Rainy Day", 5000.00, user);
+//        potRepo.save(pot2);
 
         Provider netflix = new Provider("Netflix");
         providerRepo.save(netflix);
+
         Provider tesco = new Provider("Tesco");
         providerRepo.save(tesco);
+        Provider asda = new Provider("Asda");
+        providerRepo.save(asda);
+        Provider morrisons = new Provider("Morrisons");
+        providerRepo.save(morrisons);
+
         Provider dominos = new Provider("Dominos");
         providerRepo.save(dominos);
+
         Provider sse = new Provider("SSE");
         providerRepo.save(sse);
+        Provider octopus = new Provider("Octopus");
+        providerRepo.save(octopus);
 
-        Expense expense1 = new Expense("Food Shopping", 60.25, tesco, CategoryType.GROCERIES, user);
-//        expense1.setTimestamp(new Date());
-        expenseRepo.save(expense1);
+
+        Expense groceries1 = new Expense("Food Shopping", 60.25, tesco, CategoryType.GROCERIES, user);
+        groceries1.setDate(new Date()); // can't set a date other than a new date object
+        expenseRepo.save(groceries1);
+        Expense groceries2 = new Expense("Food Shopping", 30.50, tesco, CategoryType.GROCERIES, user);
+        expenseRepo.save(groceries2);
+        Expense groceries3 = new Expense("Food Shopping", 20.45, tesco, CategoryType.GROCERIES, user);
+        expenseRepo.save(groceries3);
+        Expense groceries4 = new Expense("BEERS", 50.50, asda, CategoryType.GROCERIES, user);
+        expenseRepo.save(groceries4);
+        Expense groceries5 = new Expense("MORE BEERS", 20.45, morrisons, CategoryType.GROCERIES, user);
+        expenseRepo.save(groceries5);
 
         Expense expense2 = new Expense("Netflix", 14.99, netflix, CategoryType.SUBSCRIPTIONS, user);
         expenseRepo.save(expense2);
-        Expense expense3 = new Expense("Food Shopping", 30.50, tesco, CategoryType.GROCERIES, user);
-        expenseRepo.save(expense3);
-        Expense expense4 = new Expense("Food Shopping", 20.45, tesco, CategoryType.GROCERIES, user);
-        expenseRepo.save(expense4);
-        Expense expense5 = new Expense("Gas", 64.50, sse, CategoryType.UTILITIES, user);
-        expenseRepo.save(expense5);
+
+        Expense utilities1 = new Expense("Gas", 64.50, sse, CategoryType.UTILITIES, user);
+        expenseRepo.save(utilities1);
+        Expense utilities2 = new Expense("Leccy", 88.80, sse, CategoryType.UTILITIES, user);
+        expenseRepo.save(utilities2);
 
     }
 
