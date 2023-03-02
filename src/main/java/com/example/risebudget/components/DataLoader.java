@@ -11,6 +11,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 @Profile("!test")
 //@Component
@@ -27,7 +29,9 @@ public class DataLoader implements ApplicationRunner {
 
     public DataLoader() {};
 
-    public void run(ApplicationArguments args) {
+    public void run(ApplicationArguments args) throws ParseException {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         User user = new User("James", 1000);
         userRepo.save(user);
@@ -56,15 +60,21 @@ public class DataLoader implements ApplicationRunner {
         providerRepo.save(octopus);
 
 
+
+        Date date = dateFormat.parse("01/01/2023");
+
         Expense groceries1 = new Expense("Food Shopping", 60.25, tesco, CategoryType.GROCERIES, user);
-        groceries1.setDate(new Date()); // can't set a date other than a new date object
         expenseRepo.save(groceries1);
         Expense groceries2 = new Expense("Food Shopping", 30.50, tesco, CategoryType.GROCERIES, user);
         expenseRepo.save(groceries2);
         Expense groceries3 = new Expense("Food Shopping", 20.45, tesco, CategoryType.GROCERIES, user);
         expenseRepo.save(groceries3);
+
         Expense groceries4 = new Expense("BEERS", 50.50, asda, CategoryType.GROCERIES, user);
+        groceries4.setDate(date);
         expenseRepo.save(groceries4);
+
+
         Expense groceries5 = new Expense("MORE BEERS", 20.45, morrisons, CategoryType.GROCERIES, user);
         expenseRepo.save(groceries5);
 
