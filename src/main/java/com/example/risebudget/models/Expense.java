@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "expenses")
@@ -97,5 +98,18 @@ public class Expense {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Expense expense = (Expense) o;
+        return Double.compare(expense.amount, amount) == 0 && Objects.equals(id, expense.id) && Objects.equals(title, expense.title) && Objects.equals(provider, expense.provider) && category == expense.category && Objects.equals(user, expense.user) && Objects.equals(date, expense.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, amount, provider, category, user, date);
     }
 }
