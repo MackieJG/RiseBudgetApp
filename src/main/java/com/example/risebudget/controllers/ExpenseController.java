@@ -2,6 +2,7 @@ package com.example.risebudget.controllers;
 
 import com.example.risebudget.models.CategoryType;
 import com.example.risebudget.models.Expense;
+import com.example.risebudget.models.Pot;
 import com.example.risebudget.models.Provider;
 import com.example.risebudget.repositories.ExpenseRepo;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -34,40 +35,6 @@ public class ExpenseController {
         }
         return new ResponseEntity<>(expenseRepo.findAll(), HttpStatus.OK);
     }
-
-//    @GetMapping(value = "/filteredexpenses")
-//    public ResponseEntity<List<Expense>> getAllExpenses(
-//            @RequestParam(required = false) List<CategoryType> categories,
-//            @RequestParam(required = false) List<String> providers,
-//            @RequestParam(required = false) String startDateStr,
-//            @RequestParam(required = false) String endDateStr
-//    ) {
-//        List<Expense> expenses = new ArrayList<>();
-//
-//        if (startDateStr != null && endDateStr != null) {
-//            try {
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//                Date startDate = sdf.parse(startDateStr);
-//                Date endDate = sdf.parse(endDateStr);
-//                expenses.addAll(expenseRepo.findByDateBetween(startDate, endDate));
-//            } catch (ParseException e) {
-//                // handle exception
-//            }
-//        }
-//
-//        if (categories != null && !categories.isEmpty()) {
-//            if (providers != null && !providers.isEmpty()) {
-//                expenses.addAll(expenseRepo.findByCategoryInAndProviderNameIn(categories, providers));
-//            } else {
-//                expenses.addAll(expenseRepo.findByCategoryIn(categories));
-//            }
-//        } else if (providers != null && !providers.isEmpty()) {
-//            expenses.addAll(expenseRepo.findByProviderNameIn(providers));
-//        }
-//
-//        return new ResponseEntity<>(expenses, HttpStatus.OK);
-//    }
-
 
     @GetMapping(value = "/filteredexpenses")
     public ResponseEntity<List<Expense>> getAllExpenses(
@@ -106,5 +73,19 @@ public class ExpenseController {
         Optional<Expense> expenseToDelete = expenseRepo.findById(id);
         expenseRepo.delete(expenseToDelete.get());
         return new ResponseEntity<>(expenseToDelete.get(), HttpStatus.OK); // DOESN'T WORK
+    }
+
+    @PutMapping(value = "/expense/{id}")
+    public ResponseEntity<Expense> updateExpense(@RequestBody Expense updatedExpense, @PathVariable Long id){
+        Expense existingExpense = expenseRepo.findById(id).get();
+
+        existingExpense.setTitle(updatedExpense.getTitle());
+        existingExpense.setAmount(updatedExpense.getAmount());
+        existingExpense.setProvider(updatedExpense.getProvider());
+        existingExpense.setCategory(updatedExpense.getCategory());
+
+
+        expenseRepo.save(existingExpense);
+        return new ResponseEntity<>(existingExpense, HttpStatus.OK);
     }
 }

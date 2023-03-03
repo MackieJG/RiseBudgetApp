@@ -39,4 +39,15 @@ public class PotController {
         potRepo.delete(potToDelete.get());
         return new ResponseEntity<>(potToDelete.get(), HttpStatus.OK); // DOESN'T WORK
     }
+
+    @PutMapping(value = "/pots/{id}")
+    public ResponseEntity<Pot> updatePot(@RequestBody Pot updatedPot, @PathVariable Long id){
+        Pot existingPot = potRepo.findById(id).get();
+
+        existingPot.setTitle(updatedPot.getTitle());
+        existingPot.setAmount(updatedPot.getAmount());
+
+        potRepo.save(existingPot);
+        return new ResponseEntity<>(existingPot, HttpStatus.OK);
+    }
 }
