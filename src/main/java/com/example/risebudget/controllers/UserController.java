@@ -1,5 +1,6 @@
 package com.example.risebudget.controllers;
 
+import com.example.risebudget.models.Pot;
 import com.example.risebudget.models.User;
 import com.example.risebudget.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,16 @@ public class UserController {
         Optional<User> userToDelete = userRepo.findById(id);
         userRepo.delete(userToDelete.get());
         return new ResponseEntity<>(userToDelete.get(), HttpStatus.OK); // DOESN'T WORK
+    }
+
+    @PutMapping(value = "/users/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody User updatedUser, @PathVariable Long id){
+        User existingUser = userRepo.findById(id).get();
+
+        existingUser.setName(updatedUser.getName());
+        existingUser.setBudget(updatedUser.getBudget());
+
+        userRepo.save(existingUser);
+        return new ResponseEntity<>(existingUser, HttpStatus.OK);
     }
 }
