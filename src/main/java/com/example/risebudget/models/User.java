@@ -63,6 +63,13 @@ public class User {
         this.expenses = expenses;
     }
 
+    public void addExpense(Expense expense) {
+        expenses.add(expense);
+        double amount = expense.getAmount();
+        double remainingBudget = this.budget - amount;
+        setBudget(remainingBudget);
+    }
+
     public List<Pot> getPots() {
         return pots;
     }
