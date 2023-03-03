@@ -89,6 +89,15 @@ class RisebudgetApplicationTests {
 		assertEquals(1, foundUser.size());
 	}
 
+	@Test
+	public void canAddExpenseAndSubtractFromBudget() {
+		User user = new User("James", 1000);
+		Provider tesco = new Provider("Tesco");
+		Expense groceries1 = new Expense("Scran", 500, tesco, CategoryType.GROCERIES, user);
+		user.addExpense(groceries1);
+		assertEquals(500.00, user.getBudget(), 0.01);
+	}
+
 //	@Test
 //	public void canFindExpensesByProvider() {
 //		List<String> providerList = new ArrayList<>();
