@@ -9,7 +9,9 @@ public enum CategoryType {
     SUBSCRIPTIONS("SUBSCRIPTIONS"),
     ENTERTAINMENT("ENTERTAINMENT"),
     TRANSPORT("TRANSPORT"),
-    HEALTH("HEALTH");
+    EATING_OUT("EATING_OUT"),
+    HEALTH("HEALTH"),
+    GENERAL("GENERAL");
 
     private String value;
 
