@@ -75,7 +75,7 @@ public class ExpenseController {
         return new ResponseEntity<>(expenseToDelete.get(), HttpStatus.OK); // DOESN'T WORK
     }
 
-    @PutMapping(value = "/expense/{id}")
+    @PutMapping(value = "/expenses/{id}")
     public ResponseEntity<Expense> updateExpense(@RequestBody Expense updatedExpense, @PathVariable Long id){
         Expense existingExpense = expenseRepo.findById(id).get();
 
