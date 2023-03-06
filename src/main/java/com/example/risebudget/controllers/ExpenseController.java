@@ -83,7 +83,7 @@ public class ExpenseController {
         existingExpense.setAmount(updatedExpense.getAmount());
         existingExpense.setProvider(updatedExpense.getProvider());
         existingExpense.setCategory(updatedExpense.getCategory());
-
+        existingExpense.setDate(updatedExpense.getDate());
 
         expenseRepo.save(existingExpense);
         return new ResponseEntity<>(existingExpense, HttpStatus.OK);
