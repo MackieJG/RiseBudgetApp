@@ -72,8 +72,8 @@ class RisebudgetApplicationTests {
 	}
 
 	@Test
-	public void canFindPotByAmount() {
-		List<Pot> foundPots = potRepo.findByAmount(600.00);
+	public void canFindPotByTargetAmount() {
+		List<Pot> foundPots = potRepo.findByTargetAmount(600.00);
 		assertEquals(1, foundPots.size(), 0.1);
 	}
 

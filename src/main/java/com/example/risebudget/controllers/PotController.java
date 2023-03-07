@@ -45,7 +45,8 @@ public class PotController {
         Pot existingPot = potRepo.findById(id).get();
 
         existingPot.setTitle(updatedPot.getTitle());
-        existingPot.setAmount(updatedPot.getAmount());
+        existingPot.setTargetAmount(updatedPot.getTargetAmount());
+        existingPot.setCurrentAmount(updatedPot.getCurrentAmount());
 
         potRepo.save(existingPot);
         return new ResponseEntity<>(existingPot, HttpStatus.OK);

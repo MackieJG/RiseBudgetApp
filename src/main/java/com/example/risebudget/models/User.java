@@ -70,6 +70,10 @@ public class User {
         setBudget(remainingBudget);
     }
 
+    public void addMoneyToPot(Pot pot) {
+        double amount =
+    }
+
     public List<Pot> getPots() {
         return pots;
     }

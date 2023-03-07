@@ -36,10 +36,10 @@ public class DataLoader implements ApplicationRunner {
         User user = new User("James", 1000);
         userRepo.save(user);
 
-//        Pot pot1 = new Pot("Holiday Trip", 600.00, user);
-//        potRepo.save(pot1);
-//        Pot pot2 = new Pot("Rainy Day", 5000.00, user);
-//        potRepo.save(pot2);
+        Pot pot1 = new Pot("Holiday Trip", 600.00, 250.00, user);
+        potRepo.save(pot1);
+        Pot pot2 = new Pot("Rainy Day", 5000.00, 3000.00, user);
+        potRepo.save(pot2);
 
         Provider netflix = new Provider("Netflix");
         providerRepo.save(netflix);
