@@ -1,27 +1,22 @@
 package com.example.risebudget.controllers;
 
-import com.example.risebudget.models.CategoryType;
-import com.example.risebudget.models.Expense;
-import com.example.risebudget.models.Pot;
-import com.example.risebudget.models.Provider;
+import com.example.risebudget.models.*;
 import com.example.risebudget.repositories.ExpenseRepo;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.risebudget.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 public class ExpenseController {
 
     @Autowired
     ExpenseRepo expenseRepo;
+    @Autowired
+    UserRepo userRepo;
 
     @GetMapping(value = "/expenses")
     public ResponseEntity<List<Expense>> getAllExpenses(
@@ -52,8 +47,6 @@ public class ExpenseController {
             System.out.println(providers);
             expensesSet.addAll(expenseRepo.findByProviderNameIn(providers));
         }
-
-
         return new ResponseEntity<>(new ArrayList<>(expensesSet), HttpStatus.OK);
     }
 
@@ -65,6 +58,16 @@ public class ExpenseController {
     @PostMapping(value = "/expenses")
     public ResponseEntity<Expense> postExpense(@RequestBody Expense expense) {
         expenseRepo.save(expense);
+//        User user = userRepo.findById(expense.getUser().getId()).get();
+//        ArrayList expenseList = (ArrayList) user.getExpenses();
+//        double total = 0;
+//        for(int i = 0; i < expenseList.size(); i++){
+//            Expense exp = (Expense) expenseList.get(i);
+//            total += exp.getAmount();
+//        }
+//
+//        user.setBudget(user.getBudget() - total);
+//        userRepo.save(user);
         return new ResponseEntity<>(expense, HttpStatus.CREATED);
     }
 

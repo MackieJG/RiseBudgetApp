@@ -15,17 +15,21 @@ public class Pot {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "amount")
-    private double amount;
+    @Column(name = "target_amount")
+    private double targetAmount;
+
+    @Column(name = "current_amount")
+    private double currentAmount;
 
     @JsonIgnoreProperties({ "pots" })
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Pot(String title, double amount, User user) {
+    public Pot(String title, double targetAmount, double currentAmount, User user) {
         this.title = title;
-        this.amount = amount;
+        this.targetAmount = targetAmount;
+        this.currentAmount = currentAmount;
         this.user = user;
     }
 
@@ -43,13 +47,19 @@ public class Pot {
         this.title = title;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getTargetAmount() {
+        return targetAmount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setTargetAmount(double targetAmount) {
+        this.targetAmount = targetAmount;
     }
+
+    public double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    public void setCurrentAmount(double currentAmount) { this.currentAmount = currentAmount; }
 
     public User getUser() {
         return user;

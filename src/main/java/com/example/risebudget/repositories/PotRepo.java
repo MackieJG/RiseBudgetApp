@@ -12,6 +12,8 @@ public interface PotRepo extends JpaRepository<Pot, Long> {
 
     List<Pot> findByTitle(String title);
 
-    List<Pot> findByAmount(double amount);
+    List<Pot> findByTargetAmount(double targetAmount);
+
+    List<Pot> findByCurrentAmount(double currentAmount);
 
 }
