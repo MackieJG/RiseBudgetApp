@@ -38,9 +38,9 @@ public class DataLoader implements ApplicationRunner {
         userRepo.save(user);
 
 //        POTS
-        Pot pot1 = new Pot("Holiday", 2000.00, user);
+        Pot pot1 = new Pot("Holiday", 2000.00, 500.00, user);
         potRepo.save(pot1);
-        Pot pot2 = new Pot("Car", 7500, user);
+        Pot pot2 = new Pot("Car", 7500.00, 1300.00, user);
         potRepo.save(pot2);
 
 //        RENT PROVIDER
