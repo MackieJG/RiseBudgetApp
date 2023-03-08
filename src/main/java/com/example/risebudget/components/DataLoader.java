@@ -34,14 +34,16 @@ public class DataLoader implements ApplicationRunner {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 //        USER
-        User user = new User("James", 4000);
+        User user = new User("James", 3500);
         userRepo.save(user);
 
 //        POTS
         Pot pot1 = new Pot("Holiday", 2000.00, 0.00, user);
         potRepo.save(pot1);
-        Pot pot2 = new Pot("Car", 7500.00, 350.00, user);
+        Pot pot2 = new Pot("Car", 7500.00, 0.00, user);
         potRepo.save(pot2);
+        Pot pot3 = new Pot("PS5", 600.00, 20.00, user);
+        potRepo.save(pot3);
 
 //        RENT PROVIDER
         Provider westernlettings = new Provider("Western Lettings");
@@ -124,10 +126,9 @@ public class DataLoader implements ApplicationRunner {
 
         Date rentDateMar1 = dateFormat.parse("01/03/2023");
         Date dateMar2 = dateFormat.parse("03/02/2023");
-        Date dateMar3 = dateFormat.parse("09/02/2023");
-        Date dateMar4 = dateFormat.parse("16/02/2023");
-        Date dateMar5 = dateFormat.parse("25/02/2023");
-        Date dateMar6 = dateFormat.parse("29/02/2023");
+        Date dateMar3 = dateFormat.parse("05/02/2023");
+        Date dateMar4 = dateFormat.parse("06/02/2023");
+        Date dateMar5 = dateFormat.parse("07/02/2023");
 
 
 //          JANUARY EXPENSES
@@ -140,7 +141,7 @@ public class DataLoader implements ApplicationRunner {
         Expense utilities1 = new Expense("Gas", 64.50, octopus, CategoryType.UTILITIES, user);
         utilities1.setDate(rentDateJan1);
         expenseRepo.save(utilities1);
-        Expense utilities2 = new Expense("Leccy", 88.80, sse, CategoryType.UTILITIES, user);
+        Expense utilities2 = new Expense("Electricity", 88.80, sse, CategoryType.UTILITIES, user);
         utilities2.setDate(rentDateFeb1);
         expenseRepo.save(utilities2);
         Expense utilities3 = new Expense("Council Tax (daylight robbery)", 88.80, council, CategoryType.UTILITIES, user);
@@ -229,7 +230,7 @@ public class DataLoader implements ApplicationRunner {
         Expense utilities4 = new Expense("Gas", 64.50, octopus, CategoryType.UTILITIES, user);
         utilities4.setDate(rentDateFeb1);
         expenseRepo.save(utilities4);
-        Expense utilities5 = new Expense("Leccy", 88.80, sse, CategoryType.UTILITIES, user);
+        Expense utilities5 = new Expense("Electricity", 88.80, sse, CategoryType.UTILITIES, user);
         utilities5.setDate(rentDateFeb1);
         expenseRepo.save(utilities5);
         Expense utilities6 = new Expense("Council Tax (daylight robbery)", 88.80, council, CategoryType.UTILITIES, user);
@@ -307,69 +308,43 @@ public class DataLoader implements ApplicationRunner {
 
 
 
-//        //      RENT
-//        Expense rent = new Expense("Rent", 300.00, westernlettings, CategoryType.RENT, user);
-//        expenseRepo.save(rent);
-//
-////      UTILITIES
-//        Expense utilities1 = new Expense("Gas", 64.50, octopus, CategoryType.UTILITIES, user);
-//        expenseRepo.save(utilities1);
-//        Expense utilities2 = new Expense("Leccy", 88.80, sse, CategoryType.UTILITIES, user);
-//        expenseRepo.save(utilities2);
-//        Expense utilities3 = new Expense("Council Tax (daylight robbery)", 88.80, council, CategoryType.UTILITIES, user);
-//        expenseRepo.save(utilities3);
-//
-////      SUBSCRIPTIONS
-//        Expense sub1 = new Expense("Netflix Subscription", 14.99, netflix, CategoryType.SUBSCRIPTIONS, user);
-//        expenseRepo.save(sub1);
-//        Expense sub2 = new Expense("Disney Plus Subscription", 11.99, disneyplus, CategoryType.SUBSCRIPTIONS, user);
-//        expenseRepo.save(sub2);
-//        Expense sub3 = new Expense("Spotify Subscription", 11.99, spotify, CategoryType.SUBSCRIPTIONS, user);
-//        expenseRepo.save(sub3);
-//
-////      HEALTH
-//        Expense gymMembership = new Expense("Pure Gym Membership", 19.99, gym, CategoryType.HEALTH, user);
-//        expenseRepo.save(gymMembership);
-//
-////      GROCERIES
-//        Expense groceries1 = new Expense("Weekly Shop", 60.25, morrisons, CategoryType.GROCERIES, user);
-//        expenseRepo.save(groceries1);
-//        Expense groceries2 = new Expense("Weekly Shop", 35.50, tesco, CategoryType.GROCERIES, user);
-//        expenseRepo.save(groceries2);
-//        Expense groceries3 = new Expense("Weekly Shop", 41.45, tesco, CategoryType.GROCERIES, user);
-//        expenseRepo.save(groceries3);
-//        Expense groceries4 = new Expense("Weekly Shop", 20.45, asda, CategoryType.GROCERIES, user);
-//        expenseRepo.save(groceries4);
-//
-////      ENTERTAINMENT
-//        Expense pints = new Expense("10 pints of Guinness", 49.50, allisonarms, CategoryType.ENTERTAINMENT, user);
-//        expenseRepo.save(pints);
-//        Expense drinks = new Expense("Cocktails", 34.00, allisonarms, CategoryType.ENTERTAINMENT, user);
-//        expenseRepo.save(drinks);
-//        Expense movieTickets = new Expense("Movies", 9.50, cinema, CategoryType.ENTERTAINMENT, user);
-//        expenseRepo.save(movieTickets);
-//        Expense snooker = new Expense("Snooker", 14.00, masters, CategoryType.ENTERTAINMENT, user);
-//        expenseRepo.save(snooker);
-//        Expense beers = new Expense("Out For Beers", 27.30, belljar, CategoryType.ENTERTAINMENT, user);
-//        expenseRepo.save(beers);
-//
-////      EATINGOUT
-//        Expense lunch1 = new Expense("Lunch Falafel", 8.99, falafel, CategoryType.EATING_OUT, user);
-//        expenseRepo.save(lunch1);
-//        Expense takeAway = new Expense("Pizza Party", 40.99, dominos, CategoryType.EATING_OUT, user);
-//        expenseRepo.save(takeAway);
-//        Expense lunch2 = new Expense("Taco Bell", 10.50, tacobell, CategoryType.EATING_OUT, user);
-//        expenseRepo.save(lunch2);
-//
-////      TRANSPORT
-//        Expense weeklyTicket1 = new Expense("Weekly Train ticket", 15.50, scotrail, CategoryType.TRANSPORT, user);
-//        expenseRepo.save(weeklyTicket1);
-//        Expense weeklyTicket2 = new Expense("Weekly Train ticket", 15.50, scotrail, CategoryType.TRANSPORT, user);
-//        expenseRepo.save(weeklyTicket2);
-//        Expense weeklyTicket3 = new Expense("Weekly Train ticket", 15.50, scotrail, CategoryType.TRANSPORT, user);
-//        expenseRepo.save(weeklyTicket3);
-//        Expense weeklyTicket4 = new Expense("Weekly Train ticket", 15.50, scotrail, CategoryType.TRANSPORT, user);
-//        expenseRepo.save(weeklyTicket4);
+//          MARCH EXPENSES
+//      RENT
+        Expense rentMar = new Expense("Rent", 300.00, westernlettings, CategoryType.RENT, user);
+        rentMar.setDate(rentDateMar1);
+        expenseRepo.save(rentMar);
+
+//      UTILITIES
+        Expense utilities7 = new Expense("Gas", 64.50, octopus, CategoryType.UTILITIES, user);
+        utilities7.setDate(rentDateMar1);
+        expenseRepo.save(utilities7);
+        Expense utilities8 = new Expense("Electricity", 88.80, sse, CategoryType.UTILITIES, user);
+        utilities8.setDate(rentDateMar1);
+        expenseRepo.save(utilities8);
+        Expense utilities9 = new Expense("Council Tax (daylight robbery)", 88.80, council, CategoryType.UTILITIES, user);
+        utilities9.setDate(rentDateMar1);
+        expenseRepo.save(utilities9);
+
+//      SUBSCRIPTIONS
+        Expense sub7 = new Expense("Netflix Subscription", 14.99, netflix, CategoryType.SUBSCRIPTIONS, user);
+        sub7.setDate(dateMar2);
+        expenseRepo.save(sub7);
+        Expense sub8 = new Expense("Disney Plus Subscription", 11.99, disneyplus, CategoryType.SUBSCRIPTIONS, user);
+        sub8.setDate(dateMar2);
+        expenseRepo.save(sub8);
+        Expense sub9 = new Expense("Spotify Subscription", 11.99, spotify, CategoryType.SUBSCRIPTIONS, user);
+        sub8.setDate(dateMar2);
+        expenseRepo.save(sub9);
+
+//      GROCERIES
+        Expense groceries10 = new Expense("Weekly Shop", 60.25, morrisons, CategoryType.GROCERIES, user);
+        groceries10.setDate(dateMar3);
+        expenseRepo.save(groceries10);
+
+//      TRANSPORT
+        Expense weeklyTicket9 = new Expense("Weekly Train ticket", 15.50, scotrail, CategoryType.TRANSPORT, user);
+        weeklyTicket9.setDate(dateMar4);
+        expenseRepo.save(weeklyTicket9);
 
     }
 
